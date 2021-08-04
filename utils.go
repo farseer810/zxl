@@ -165,9 +165,10 @@ func sendTxMidRequest(appId, appKey, method, url string, body []byte, timeout ti
 
 	cri := commReqInfo{}
 
-	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, DisableKeepAlives: true}
-
-	cli := http.Client{Transport: tr, Timeout: timeout}
+	//tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, DisableKeepAlives: true}
+	//
+	//cli := http.Client{Transport: tr, Timeout: timeout}
+	cli := buildHttpClient(defConf.IsProxy, timeout)
 
 	req, err := http.NewRequest(method, url, byteReader)
 	if err != nil {
