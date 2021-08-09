@@ -222,12 +222,15 @@ func isInnerIpFromUrl(originUrl string) bool {
 	}
 
 	h := strings.Split(u.Host, ":")
-	addr, err := net.ResolveIPAddr("ip", h[0])
-	if err != nil {
-		return true
-	}
-
-	if isInnerIp(addr.IP.String()) {
+	//addr, err := net.ResolveIPAddr("ip", h[0])
+	//if err != nil {
+	//	return true
+	//}
+	//
+	//if isInnerIp(addr.IP.String()) {
+	//	return true
+	//}
+	if isInnerIp(h[0]) {
 		return true
 	}
 

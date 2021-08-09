@@ -746,7 +746,10 @@ func postFile(filename string, targetUrl string, param map[string]string) (map[s
 	}
 	contentType := bodyWriter.FormDataContentType()
 	bodyWriter.Close()
-	resp, err := http.Post(targetUrl, contentType, bodyBuf)
+
+	//resp, err := http.Post(targetUrl, contentType, bodyBuf)
+	cli := buildHttpClient(defConf.IsProxy, 15 * time.Second)
+	resp, err := cli.Post(targetUrl, contentType, bodyBuf)
 	if err != nil {
 		return nil, errors.New("send http fail: " + err.Error())
 	}
